@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "baseUrl": "./src",
+        "outDir": "./dist",
+        "strict": true,
+        "esModuleInterop": true
+    }
+}
