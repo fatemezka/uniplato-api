@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import fastifyJwt from "fastify-jwt";
 import { userRoutes } from "./routes/user";
+import { categoryRoutes } from "./routes/category";
 
 // dotenv
 import dotenv from "dotenv";
@@ -15,6 +16,7 @@ async function main() {
 
   // routes
   server.register(userRoutes, { prefix: "/user" });
+  server.register(categoryRoutes, { prefix: "/category" });
 
   try {
     await server.listen(port);
