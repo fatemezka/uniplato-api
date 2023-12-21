@@ -1,13 +1,10 @@
 {
   "name": "uniplato-task",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a task project for Uniplato Company job interview.",
   "main": "index.js",
-  "scripts": {
-    "devStart": "nodemon script.ts"
-  },
-  "keywords": [],
-  "author": "",
+  "scripts": {},
+  "author": "Fateme Zahra Kalantari",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.10.5",
