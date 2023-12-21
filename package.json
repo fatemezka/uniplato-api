@@ -9,6 +9,7 @@
   "author": "Fateme Zahra Kalantari",
   "license": "ISC",
   "devDependencies": {
+    "@types/ajv": "^1.0.0",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.10.5",
     "nodemon": "^3.0.2",
@@ -20,6 +21,7 @@
   "dependencies": {
     "@prisma/client": "^5.7.1",
     "@types/dotenv": "^8.2.0",
+    "ajv": "^8.12.0",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
     "fastify": "^4.25.1"

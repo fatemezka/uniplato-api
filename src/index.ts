@@ -1,4 +1,7 @@
 import Fastify from "fastify";
+import { userRoutes } from "./routes/user";
+
+// dotenv
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -6,6 +9,10 @@ export const server = Fastify();
 
 async function main() {
   const port = process.env.SERVER_PORT ?? 3000;
+
+  // routes
+  server.register(userRoutes, { prefix: "/user" });
+
   try {
     await server.listen(port);
     console.log(`Server is on port: ${port}`);
