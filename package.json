@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This is a task project for Uniplato Company job interview.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "dev": "tsnd --respawn --transpile-only --exit-child src/index.ts"
+  },
   "author": "Fateme Zahra Kalantari",
   "license": "ISC",
   "devDependencies": {
