@@ -38,13 +38,11 @@ export const handler = async (
     }
 
     // hash the plain password
-    const hashed_password = await bcrypt.hash(
-      password,
-      process.env.BCRYPT_SALT ?? ""
-    );
+    const salt = process.env.BCRYPT_SALT ?? "";
+    const hash_password = await bcrypt.hash(password, salt);
 
     // create user
-    const user = await create(name, family, username, email, hashed_password);
+    const user = await create(name, family, username, email, hash_password);
 
     return reply.code(201).send(user);
   } catch (error) {

@@ -1,5 +1,6 @@
 import { FastifyInstance } from "fastify";
 import * as registerController from "../controllers/user/register";
+import * as loginController from "../controllers/user/login";
 
 export const userRoutes = (
   server: FastifyInstance,
@@ -15,6 +16,17 @@ export const userRoutes = (
       },
     },
     registerController.handler
+  );
+
+  // login
+  server.post(
+    "/login",
+    {
+      schema: {
+        body: loginController.bodySchema,
+      },
+    },
+    loginController.handler
   );
 
   done();
