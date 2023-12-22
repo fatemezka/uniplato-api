@@ -11,6 +11,13 @@ dotenv.config();
 
 export const server = Fastify();
 
+// add optional user key to request
+declare module "fastify" {
+  interface FastifyRequest {
+    user?: string;
+  }
+}
+
 async function main() {
   const port = process.env.SERVER_PORT ?? 3000;
 
@@ -28,7 +35,7 @@ async function main() {
       securityDefinitions: {
         apiKey: {
           type: "apiKey",
-          name: "apiKey", // todo change
+          name: "x-uniplato-auth",
           in: "header",
         },
       },
