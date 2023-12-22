@@ -1,7 +1,7 @@
 import { JSONSchemaType } from "ajv";
 import bcrypt from "bcrypt";
 import { FastifyRequest, FastifyReply } from "fastify";
-import { create, getByEmail } from "../../services/user";
+import { create, getByEmail, getByUsername } from "../../services/user";
 
 // BodySchema
 interface Data {
@@ -32,9 +32,15 @@ export const handler = async (
     const { name, family, username, email, password } = req.body;
 
     // check if email exists
-    const existing_user = await getByEmail(email);
+    let existing_user = await getByEmail(email);
     if (existing_user) {
       return reply.code(401).send("This email does exist.");
+    }
+
+    // check if username exists
+    existing_user = await getByUsername(username);
+    if (existing_user) {
+      return reply.code(401).send("This username does exist.");
     }
 
     // hash the plain password
