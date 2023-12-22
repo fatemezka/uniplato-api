@@ -12,6 +12,9 @@ export const userRoutes = (
     "/register",
     {
       schema: {
+        description: "Register new user.",
+        tags: ["User"],
+        summary: "Register new user",
         body: registerController.bodySchema,
       },
     },
@@ -23,6 +26,9 @@ export const userRoutes = (
     "/login",
     {
       schema: {
+        description: "Login user.",
+        tags: ["User"],
+        summary: "Login user",
         body: loginController.bodySchema,
       },
     },
