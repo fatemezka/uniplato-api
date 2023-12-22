@@ -11,11 +11,11 @@ dotenv.config();
 
 export const server = Fastify();
 
-// jwt
-server.register(fastifyJwt, { secret: process.env.JWT_SECRET });
-
 async function main() {
   const port = process.env.SERVER_PORT ?? 3000;
+
+  // jwt
+  server.register(fastifyJwt, { secret: process.env.JWT_SECRET });
 
   // swagger
   await server.register(fastifySwagger, {
