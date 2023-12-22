@@ -1,7 +1,6 @@
 import { JSONSchemaType } from "ajv";
 import { FastifyRequest, FastifyReply } from "fastify";
 import {
-  getById,
   increaseScore,
   decreaseScore,
   updateScore,

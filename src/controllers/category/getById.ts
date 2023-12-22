@@ -3,11 +3,11 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import { getById } from "../../services/category";
 
 // schema
-interface Data {
+interface ParamsData {
   id: string;
 }
 
-export const paramsSchema: JSONSchemaType<Data> = {
+export const paramsSchema: JSONSchemaType<ParamsData> = {
   type: "object",
   properties: {
     id: { type: "string" },
@@ -17,7 +17,7 @@ export const paramsSchema: JSONSchemaType<Data> = {
 
 // handler
 export const handler = async (
-  req: FastifyRequest<{ Params: Data }>,
+  req: FastifyRequest<{ Params: ParamsData }>,
   reply: FastifyReply
 ) => {
   const { id } = req.params;

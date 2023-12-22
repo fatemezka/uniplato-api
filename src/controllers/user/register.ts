@@ -3,15 +3,15 @@ import bcrypt from "bcrypt";
 import { FastifyRequest, FastifyReply } from "fastify";
 import { create, getByEmail, getByUsername } from "../../services/user";
 
-// BodySchema
-interface Data {
+// schema
+interface BodyData {
   name: string;
   family: string;
   username: string;
   email: string;
   password: string;
 }
-export const bodySchema: JSONSchemaType<Data> = {
+export const bodySchema: JSONSchemaType<BodyData> = {
   type: "object",
   properties: {
     name: { type: "string" },
@@ -23,9 +23,9 @@ export const bodySchema: JSONSchemaType<Data> = {
   required: ["name", "family", "username", "email", "password"],
 };
 
-// Handler
+// handler
 export const handler = async (
-  req: FastifyRequest<{ Body: Data }>,
+  req: FastifyRequest<{ Body: BodyData }>,
   reply: FastifyReply
 ) => {
   try {

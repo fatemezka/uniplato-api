@@ -5,12 +5,12 @@ import { getByEmail } from "../../services/user";
 import { server } from "../../index";
 
 // schema
-interface Data {
+interface BodyData {
   email: string;
   password: string;
 }
 
-export const bodySchema: JSONSchemaType<Data> = {
+export const bodySchema: JSONSchemaType<BodyData> = {
   type: "object",
   properties: {
     email: { type: "string" }, // todo email validation
@@ -21,7 +21,7 @@ export const bodySchema: JSONSchemaType<Data> = {
 
 // handler
 export const handler = async (
-  req: FastifyRequest<{ Body: Data }>,
+  req: FastifyRequest<{ Body: BodyData }>,
   reply: FastifyReply
 ) => {
   try {
