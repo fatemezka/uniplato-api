@@ -7,9 +7,9 @@
     "build": "tsc",
     "start": "node dist/src/index.js",
     "dev": "tsnd --respawn --transpile-only --exit-child src/index.ts",
-    "test": "mocha --require ts-node/register 'test/**/*.ts'",
-    "testUser": "mocha --require ts-node/register 'test/user.test.ts'",
-    "testCat": "mocha --require ts-node/register 'test/category.test.ts'"
+    "test": "mocha --require ts-node/register test/setup.ts 'test/**/*.test.ts'",
+    "testUser": "mocha --require ts-node/register test/setup.ts 'test/user.test.ts'",
+    "testCat": "mocha --require ts-node/register test/setup.ts 'test/category.test.ts'"
   },
   "author": "Fateme Zahra Kalantari",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "@types/fastify-jwt": "^0.8.1",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.10.5",
+    "@types/winston": "^2.4.4",
     "nodemon": "^3.0.2",
     "prisma": "^5.7.1",
     "ts-node": "^10.9.2",
@@ -40,6 +41,7 @@
     "dotenv": "^16.3.1",
     "fastify": "^4.25.1",
     "fastify-jwt": "^4.2.0",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "winston": "^3.11.0"
   }
 }

@@ -2,6 +2,7 @@ import { JSONSchemaType } from "ajv";
 import bcrypt from "bcrypt";
 import { FastifyRequest, FastifyReply } from "fastify";
 import { create, getByEmail, getByUsername } from "../../services/user";
+import logger from "../../logger";
 
 // schema
 interface BodyData {
@@ -17,7 +18,7 @@ export const bodySchema: JSONSchemaType<BodyData> = {
     name: { type: "string" },
     family: { type: "string" },
     username: { type: "string" },
-    email: { type: "string" }, // todo email validation
+    email: { type: "string", format: "email" },
     password: { type: "string" },
   },
   required: ["name", "family", "username", "email", "password"],
@@ -52,7 +53,7 @@ export const handler = async (
 
     return reply.code(201).send(user);
   } catch (error) {
-    console.log(error);
+    logger.error((error as Error).message);
     return reply.code(500).send(error);
   }
 };

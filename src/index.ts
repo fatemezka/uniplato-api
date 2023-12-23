@@ -4,6 +4,7 @@ import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUI from "@fastify/swagger-ui";
 import { userRoutes } from "./routes/user";
 import { categoryRoutes } from "./routes/category";
+import logger from "./logger";
 
 // dotenv
 import dotenv from "dotenv";
@@ -63,11 +64,12 @@ async function main() {
   server.register(userRoutes, { prefix: "/user" });
   server.register(categoryRoutes, { prefix: "/category" });
 
+  // run server
   try {
     await server.listen(port);
-    console.log(`Server is on port: ${port}`);
+    logger.info(`Server is ready on port: ${port} :)`);
   } catch (error) {
-    console.log(error);
+    logger.error((error as Error).message);
     process.exit(1);
   }
 }

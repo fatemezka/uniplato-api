@@ -5,6 +5,7 @@ import {
   decreaseScore,
   updateScore,
 } from "../../services/category";
+import logger from "../../logger";
 
 // schema
 interface ParamsData {
@@ -58,7 +59,7 @@ export const handler: any = async (
 
     return reply.code(200).send(category);
   } catch (error) {
-    console.log(error);
+    logger.error((error as Error).message);
     return reply.code(500).send(error);
   }
 };

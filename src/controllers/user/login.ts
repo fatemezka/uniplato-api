@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { FastifyRequest, FastifyReply } from "fastify";
 import { getByEmail } from "../../services/user";
 import { server } from "../../index";
+import logger from "../../logger";
 
 // schema
 interface BodyData {
@@ -13,7 +14,7 @@ interface BodyData {
 export const bodySchema: JSONSchemaType<BodyData> = {
   type: "object",
   properties: {
-    email: { type: "string" }, // todo email validation
+    email: { type: "string", format: "email" },
     password: { type: "string" },
   },
   required: ["email", "password"],
@@ -49,7 +50,7 @@ export const handler = async (
 
     return reply.code(200).send({ access_token });
   } catch (error) {
-    console.log(error);
+    logger.error((error as Error).message);
     return reply.code(500).send(error);
   }
 };

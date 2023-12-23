@@ -1,5 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { getAll } from "../../services/category";
+import logger from "../../logger";
 
 // handler
 export const handler = async (req: FastifyRequest, reply: FastifyReply) => {
@@ -8,7 +9,7 @@ export const handler = async (req: FastifyRequest, reply: FastifyReply) => {
 
     return reply.code(200).send(categories);
   } catch (error) {
-    console.log(error);
+    logger.error((error as Error).message);
     return reply.code(500).send(error);
   }
 };
