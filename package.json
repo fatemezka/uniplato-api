@@ -2,8 +2,10 @@
   "name": "uniplato-task",
   "version": "1.0.0",
   "description": "This is a task project for Uniplato Company job interview.",
-  "main": "index.js",
+  "main": "./dist/src/index.js",
   "scripts": {
+		"build": "tsc",
+		"start": "node dist/src/index.js",
     "dev": "tsnd --respawn --transpile-only --exit-child src/index.ts",
     "test": "mocha --require ts-node/register 'test/**/*.ts'"
   },
