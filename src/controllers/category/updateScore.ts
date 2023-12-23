@@ -37,7 +37,7 @@ export const bodySchema: JSONSchemaType<BodyData> = {
 };
 
 // handler
-export const handler = async (
+export const handler: any = async (
   req: FastifyRequest<{ Params: ParamsData; Body: BodyData }>,
   reply: FastifyReply
 ) => {

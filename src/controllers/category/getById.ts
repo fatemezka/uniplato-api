@@ -1,5 +1,5 @@
 import { JSONSchemaType } from "ajv";
-import { FastifyRequest, FastifyReply } from "fastify";
+import { FastifyRequest, FastifyReply, RouteHandlerMethod } from "fastify";
 import { getById } from "../../services/category";
 
 // schema
@@ -16,7 +16,7 @@ export const paramsSchema: JSONSchemaType<ParamsData> = {
 };
 
 // handler
-export const handler = async (
+export const handler: any = async (
   req: FastifyRequest<{ Params: ParamsData }>,
   reply: FastifyReply
 ) => {

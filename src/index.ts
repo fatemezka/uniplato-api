@@ -9,7 +9,7 @@ import { categoryRoutes } from "./routes/category";
 import dotenv from "dotenv";
 dotenv.config();
 
-export const server = Fastify();
+const server = Fastify();
 
 async function main() {
   const port = process.env.SERVER_PORT ?? 3000;
@@ -71,5 +71,7 @@ async function main() {
     process.exit(1);
   }
 }
+
+export { server };
 
 main();
