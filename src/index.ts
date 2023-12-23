@@ -1,4 +1,4 @@
-import Fastify from "fastify";
+import Fastify, { FastifyListenOptions } from "fastify";
 import fastifyJwt from "@fastify/jwt";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUI from "@fastify/swagger-ui";
@@ -13,7 +13,7 @@ dotenv.config();
 const server = Fastify();
 
 async function main() {
-  const port = process.env.SERVER_PORT ?? 3000;
+  const port = process.env.SERVER_PORT ?? "";
 
   // jwt
   await server.register<any>(fastifyJwt, {
@@ -66,7 +66,8 @@ async function main() {
 
   // run server
   try {
-    await server.listen(port);
+    let server_options: FastifyListenOptions = { port: parseInt(port) };
+    await server.listen(server_options);
     logger.info(`Server is ready on port: ${port} :)`);
   } catch (error) {
     logger.error((error as Error).message);
