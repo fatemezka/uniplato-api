@@ -2,10 +2,7 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import { getAll } from "../../services/category";
 
 // handler
-export const handler = async (
-  req: FastifyRequest<{ Body: Data }>,
-  reply: FastifyReply
-) => {
+export const handler = async (req: FastifyRequest, reply: FastifyReply) => {
   try {
     const categories = await getAll();
 

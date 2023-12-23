@@ -22,7 +22,7 @@ async function main() {
   const port = process.env.SERVER_PORT ?? 3000;
 
   // jwt
-  server.register(fastifyJwt, { secret: process.env.JWT_SECRET });
+  await server.register(fastifyJwt, { secret: process.env.JWT_SECRET });
 
   // swagger
   await server.register(fastifySwagger, {
