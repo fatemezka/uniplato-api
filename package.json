@@ -4,8 +4,8 @@
   "description": "This is a task project for Uniplato Company job interview.",
   "main": "./dist/src/index.js",
   "scripts": {
-		"build": "tsc",
-		"start": "node dist/src/index.js",
+    "build": "tsc",
+    "start": "node dist/src/index.js",
     "dev": "tsnd --respawn --transpile-only --exit-child src/index.ts",
     "test": "mocha --require ts-node/register 'test/**/*.ts'"
   },
@@ -15,6 +15,7 @@
     "@types/ajv": "^1.0.0",
     "@types/bcrypt": "^5.0.2",
     "@types/chai": "^4.3.11",
+    "@types/fastify-jwt": "^0.8.1",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.10.5",
     "nodemon": "^3.0.2",

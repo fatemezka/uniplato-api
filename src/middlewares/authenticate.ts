@@ -13,7 +13,7 @@ export const authenticate = (
   }
 
   try {
-    const decoded_token = server.jwt.decode(access_token);
+    const decoded_token = (server as any).jwt.decode(access_token);
     req.user = decoded_token;
   } catch (error) {
     return reply.code(403).send("Bad Token.");

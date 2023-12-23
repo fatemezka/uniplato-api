@@ -41,7 +41,7 @@ export const handler = async (
       return reply.code(403).send("Password is incorrect.");
 
     // create access token
-    let access_token = server.jwt.sign({
+    let access_token = (server as any).jwt.sign({
       user_id: user.id,
       username: user.username,
       email: user.email,

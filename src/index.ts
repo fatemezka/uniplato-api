@@ -1,5 +1,5 @@
-import Fastify, { FastifyReply, FastifyRequest } from "fastify";
-import fastifyJwt from "fastify-jwt";
+import Fastify from "fastify";
+import fastifyJwt from "@fastify/jwt";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUI from "@fastify/swagger-ui";
 import { userRoutes } from "./routes/user";
@@ -11,21 +11,16 @@ dotenv.config();
 
 export const server = Fastify();
 
-// add optional user key to request
-declare module "fastify" {
-  interface FastifyRequest {
-    user?: string;
-  }
-}
-
 async function main() {
   const port = process.env.SERVER_PORT ?? 3000;
 
   // jwt
-  await server.register(fastifyJwt, { secret: process.env.JWT_SECRET });
+  await server.register<any>(fastifyJwt, {
+    secret: process.env.JWT_SECRET,
+  });
 
   // swagger
-  await server.register(fastifySwagger, {
+  await server.register<any>(fastifySwagger, {
     swagger: {
       info: {
         title: "Uniplato Swagger API",
