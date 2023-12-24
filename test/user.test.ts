@@ -1,52 +1,87 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
-import { server } from "../src/index";
+import { server } from "../src/app";
 import prisma from "../src/database/prisma";
 
-const expect = chai.expect;
+// Assertion Style
+chai.should();
 chai.use(chaiHttp);
 
 const httpServer = server.server;
 
-describe("User workflow tests", () => {
-  it("Should register + login a user", (done) => {
-    // 1. Register endpoint test
-    let user = {
-      name: "Peter",
-      family: "Petersen",
-      username: "peter_petersen",
-      email: "mail@petersen.com",
-      password: "1234",
-    };
-    chai
-      .request(httpServer)
-      .post("/user/register")
-      .send(user)
-      .end((err, res) => {
-        // Asserts
-        expect(res.status).to.be.equal(201);
-        expect(res.body).to.be.a("object");
-        expect(res.error).to.be.equal(false);
+describe("User Endpoints tests", () => {
+  let testing_user = {
+    name: "Alex",
+    family: "Green",
+    username: "alex_green",
+    email: "mail@green.com",
+    password: "1234",
+  };
+
+  describe("User Register", () => {
+    before(async () => {
+      // delete user by test's user email or username
+      await prisma.user.deleteMany({
+        where: {
+          OR: [
+            { username: testing_user.username },
+            { email: testing_user.email },
+          ],
+        },
+      });
+    });
+
+    it("It should Register a user", (done) => {
+      chai
+        .request(httpServer)
+        .post("/user/register")
+        .send(testing_user)
+        .end((err, res) => {
+          res.should.have.status(201);
+          res.body.should.be.a("object");
+          res.body.should.have.property("id");
+          res.body.should.have.property("name");
+          res.body.should.have.property("family");
+          res.body.should.have.property("username");
+
+          done();
+        });
+    });
+  });
+
+  describe("User Login", () => {
+    before(async () => {
+      // delete user by test's user email or username
+      await prisma.user.deleteMany({
+        where: {
+          OR: [
+            { username: testing_user.username },
+            { email: testing_user.email },
+          ],
+        },
       });
 
-    // 2. Login endpoint test
-    let user_info = {
-      email: "mail@petersen.com",
-      password: "1234",
-    };
-    chai
-      .request(httpServer)
-      .post("/user/login")
-      .send(user_info)
-      .end((err, res) => {
-        // Asserts
-        expect(res.statusCode).to.be.equal(200);
-        expect(res.error).to.be.equal(false);
-        expect(res.body).to.be.a("object");
-        let access_token = res.body.access_token;
-        expect(access_token).to.be.a("string");
-      });
+      // create new user by testing_user info
+      await prisma.user.create({ data: testing_user });
+    });
 
-    done();
+    it("It should Login a user", (done) => {
+      chai
+        .request(httpServer)
+        .post("/user/login")
+        .send({
+          email: testing_user.email,
+          password: testing_user.password,
+        })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a("object");
+          res.body.should.have.property("access_token");
+          let access_token = res.body.access_token;
+          access_token.should.be.a("string");
+
+          done();
+        });
+    });
   });
 });
