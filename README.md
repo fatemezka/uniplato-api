@@ -99,7 +99,7 @@ Database Setup
 Start the server
 
 ```bash
-  npm run dev
+  npm run build 
 ```
 ```bash
   npm run start
@@ -117,7 +117,14 @@ To run tests, run the following command
 ```bash
   npm run test
 ```
-
+if you want to test user endpoints:
+```bash
+  npm run test-user
+```
+or test category endpoints:
+```bash
+  npm run test-category
+```
 
 ## Environment Variables
 

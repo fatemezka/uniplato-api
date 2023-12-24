@@ -7,7 +7,7 @@
     "build": "tsc",
     "start": "node dist/src/app.js",
     "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts",
-    "test": "mocha -r ts-node/register test/setup.ts 'test/**/*.test.ts'",
+    "test": "mocha -r ts-node/register 'test/**/*.test.ts'",
     "test-user": "mocha -r ts-node/register 'test/user.test.ts'",
     "test-category": "mocha -r ts-node/register 'test/category.test.ts'"
   },
