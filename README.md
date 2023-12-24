@@ -108,6 +108,12 @@ Then start the server by:
   npm run start
 ```
 
+To create logs directory to save errors and info messages:
+
+```bash
+  npm run dev
+```
+
 
 ## Authentication
 In this project we used @fastify/jwt to create jwt (jsonwebtoken) token to authenticate user info in each requests that it needs.
