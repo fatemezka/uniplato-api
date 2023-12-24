@@ -90,21 +90,23 @@ Install dependencies
   npm install
 ```
 
-Database Setup
+Database Setup (prisma)
 
 ```bash
   npx prisma migrate dev
 ```
 
-Start the server
+First compile typescript codes:
 
 ```bash
   npm run build 
 ```
+
+Then start the server by:
+
 ```bash
   npm run start
 ```
-- As you can see some scripts declared in package.json file.
 
 
 ## Authentication
@@ -130,4 +132,8 @@ or test category endpoints:
 
 To run this project, you will need to create new `.env` file in the root of the project directory and put `.env.template` variables there, and give them correct values.
 
-
+## Docker
+To build this project container:
+```bash
+  docker-compose up --build
+```
