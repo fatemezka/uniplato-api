@@ -2,14 +2,14 @@
   "name": "uniplato-task",
   "version": "1.0.0",
   "description": "This is a task project for Uniplato Company job interview.",
-  "main": "./dist/src/index.js",
+  "main": "./dist/src/app.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/src/index.js",
-    "dev": "tsnd --respawn --transpile-only --exit-child src/index.ts",
-    "test": "mocha --require ts-node/register test/setup.ts 'test/**/*.test.ts'",
-    "testUser": "mocha --require ts-node/register test/setup.ts 'test/user.test.ts'",
-    "testCat": "mocha --require ts-node/register test/setup.ts 'test/category.test.ts'"
+    "start": "node dist/src/app.js",
+    "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts",
+    "test": "mocha -r ts-node/register test/setup.ts 'test/**/*.test.ts'",
+    "test-user": "mocha -r ts-node/register 'test/user.test.ts'",
+    "test-category": "mocha -r ts-node/register 'test/category.test.ts'"
   },
   "author": "Fateme Zahra Kalantari",
   "license": "ISC",

@@ -2,7 +2,7 @@ import { JSONSchemaType } from "ajv";
 import bcrypt from "bcrypt";
 import { FastifyRequest, FastifyReply } from "fastify";
 import { getByEmail } from "../../services/user";
-import { server } from "../../index";
+import { server } from "../../app";
 import logger from "../../logger";
 
 // schema

@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { server } from "../index";
+import { server } from "../app";
 
 export const authenticate = (
   req: FastifyRequest,
