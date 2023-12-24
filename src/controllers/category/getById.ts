@@ -26,6 +26,10 @@ export const handler: any = async (
   try {
     const category = await getById(id);
 
+    if (!category) {
+      return reply.code(401).send("Category not found.");
+    }
+
     return reply.code(200).send(category);
   } catch (error) {
     logger.error((error as Error).message);

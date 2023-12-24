@@ -4,6 +4,7 @@ import {
   increaseScore,
   decreaseScore,
   updateScore,
+  getById,
 } from "../../services/category";
 import logger from "../../logger";
 
@@ -46,7 +47,10 @@ export const handler: any = async (
   const { score, operation } = req.body;
 
   try {
-    let category;
+    let category = await getById(id);
+    if (!category) {
+      return reply.code(401).send("Category not found.");
+    }
 
     // update category's score
     if (score || score == 0) {
