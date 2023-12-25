@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    image: node:latest
+    command: sh -c "cd /app && npm install && npx prisma migrate dev && npm run build && npm run start"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: sample_user
+      MYSQL_PASSWORD: 123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306

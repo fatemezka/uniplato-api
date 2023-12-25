@@ -1,6 +1,7 @@
 import { JSONSchemaType } from "ajv";
-import { FastifyRequest, FastifyReply } from "fastify";
+import { FastifyRequest, FastifyReply, RouteHandlerMethod } from "fastify";
 import { getById } from "../../services/category";
+import logger from "../../logger";
 
 // schema
 interface ParamsData {
@@ -16,7 +17,7 @@ export const paramsSchema: JSONSchemaType<ParamsData> = {
 };
 
 // handler
-export const handler = async (
+export const handler: any = async (
   req: FastifyRequest<{ Params: ParamsData }>,
   reply: FastifyReply
 ) => {
@@ -25,9 +26,13 @@ export const handler = async (
   try {
     const category = await getById(id);
 
+    if (!category) {
+      return reply.code(401).send("Category not found.");
+    }
+
     return reply.code(200).send(category);
   } catch (error) {
-    console.log(error);
+    logger.error((error as Error).message);
     return reply.code(500).send(error);
   }
 };

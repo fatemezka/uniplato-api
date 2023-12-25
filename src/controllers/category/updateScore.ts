@@ -4,7 +4,9 @@ import {
   increaseScore,
   decreaseScore,
   updateScore,
+  getById,
 } from "../../services/category";
+import logger from "../../logger";
 
 // schema
 interface ParamsData {
@@ -37,7 +39,7 @@ export const bodySchema: JSONSchemaType<BodyData> = {
 };
 
 // handler
-export const handler = async (
+export const handler: any = async (
   req: FastifyRequest<{ Params: ParamsData; Body: BodyData }>,
   reply: FastifyReply
 ) => {
@@ -45,7 +47,10 @@ export const handler = async (
   const { score, operation } = req.body;
 
   try {
-    let category;
+    let category = await getById(id);
+    if (!category) {
+      return reply.code(401).send("Category not found.");
+    }
 
     // update category's score
     if (score || score == 0) {
@@ -58,7 +63,7 @@ export const handler = async (
 
     return reply.code(200).send(category);
   } catch (error) {
-    console.log(error);
+    logger.error((error as Error).message);
     return reply.code(500).send(error);
   }
 };
