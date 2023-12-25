@@ -21,6 +21,7 @@
     "@types/fastify-jwt": "^0.8.1",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.10.5",
+    "@types/uuid": "^9.0.7",
     "@types/winston": "^2.4.4",
     "nodemon": "^3.0.2",
     "prisma": "^5.7.1",
@@ -42,6 +43,7 @@
     "fastify": "^4.25.1",
     "fastify-jwt": "^4.2.0",
     "mocha": "^10.2.0",
+    "uuid": "^9.0.1",
     "winston": "^3.11.0"
   }
 }
